@@ -9,11 +9,13 @@ const Users = ({users, loading}) =>  {
         return <Spinner />
     } else {
         return (
-            <div style={userStyle}>
-                {users.map(user => (
-                    <UserItems key={user.id} user={user} />
-                ))}
-            </div>
+            typeof users !== 'undefined' && (
+                <div style={userStyle}>
+                    {users.map(user => (
+                        <UserItems key={user.id} user={user} />
+                    ))}
+                </div>
+            )
         )
 }}
 const userStyle = {
