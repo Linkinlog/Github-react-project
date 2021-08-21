@@ -3,12 +3,12 @@ import axios from "axios";
 import githubContext from "./githubContext";
 import githubReducer from './githubReducer';
 import {
-    SEARCH_loading,
     SET_LOADING,
     CLEAR_USERS,
     GET_REPOS,
     SEARCH_USERS,
-    GET_USER
+    GET_USER,
+    SET_ALERT
 } from '../types.js';
 import { data } from '../../components/layout/defaultUsers'
 
@@ -20,7 +20,8 @@ const GithubState = props => {
         users: data,
         user: {},
         repos : [],
-        loading: false
+        loading: false,
+        alert: null,
     }  
 
     const [state, dispatch] = useReducer(githubReducer, initialState)
@@ -76,17 +77,28 @@ const GithubState = props => {
 
     // Set Loading
     const setLoading = () => dispatch({ type: SET_LOADING })
+
+    // Set error alert
+    const popAlert = (msg, type) => {
+        dispatch({type: SET_ALERT, payload: {msg, type}})
+        setTimeout(() => {dispatch({type: SET_ALERT, payload: null})}
+        , 5000)
+        console.log('Ran')
+    }
+
     return<githubContext.Provider
         value={{
             users: state.users,
             user: state.user,
             repos: state.repos,
             loading: state.loading,
+            alert: state.alert,
             searchUsers,
             clearUsers,
             getUser,
             getUserRepos,
-            defaultUsers
+            defaultUsers,
+            popAlert
         }}
     >
         {props.children}
