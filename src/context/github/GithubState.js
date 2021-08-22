@@ -8,7 +8,6 @@ import {
     GET_REPOS,
     SEARCH_USERS,
     GET_USER,
-    SET_ALERT
 } from '../types.js';
 import { data } from '../../components/layout/defaultUsers'
 
@@ -78,14 +77,6 @@ const GithubState = props => {
     // Set Loading
     const setLoading = () => dispatch({ type: SET_LOADING })
 
-    // Set error alert
-    const popAlert = (msg, type) => {
-        dispatch({type: SET_ALERT, payload: {msg, type}})
-        setTimeout(() => {dispatch({type: SET_ALERT, payload: null})}
-        , 5000)
-        console.log('Ran')
-    }
-
     return<githubContext.Provider
         value={{
             users: state.users,
@@ -98,7 +89,6 @@ const GithubState = props => {
             getUser,
             getUserRepos,
             defaultUsers,
-            popAlert
         }}
     >
         {props.children}

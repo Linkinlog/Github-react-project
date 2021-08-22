@@ -5,16 +5,10 @@ import {
     SEARCH_USERS,
     GET_USER,
     DEFAULT_USERS,
-    SET_ALERT
 } from '../types.js';
 // eslint-disable-next-line 
 export default (state, action) => {
     switch(action.type){
-        case SET_ALERT:
-            return{
-                ...state,
-                alert: action.payload,
-            }
         case DEFAULT_USERS:
             return {
                 ...state,
