@@ -1,1 +1,1 @@
-React app to study the fundamentals of react and the Github API. 
+React app to study the fundamentals of react, class based components, state, arrow function components, and the Github API. 
